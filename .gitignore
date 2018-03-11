@@ -1,0 +1,9 @@
+# Java class files
+*.class
+
+# OSX files
+.DS_Store
+
+# Gradle files
+.gradle
+/build/
