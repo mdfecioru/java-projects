@@ -1,9 +1,10 @@
 package com.mdfecioru.util.io;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedReader;
 import java.io.InputStream;
-import java.nio.file.Paths;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.Collection;
 
@@ -27,5 +28,33 @@ public class ReadFromFile {
         }
 
         return;
+    }
+
+    public static ArrayList<LinkedList<Integer>> readGraphToAdjList (InputStream inputStream, int offset) {
+        ArrayList<LinkedList<Integer>> adj = null;
+        String line;
+        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
+
+        try {
+            line = in.readLine();
+            adj = new ArrayList<>(Integer.parseInt(line));
+
+            line = in.readLine();
+            while (line != null) {
+                LinkedList<Integer> ll = new LinkedList<>();
+                String[] valueStr = new String(line).trim().split("\\s+");
+                int index = Integer.parseInt(valueStr[0]) - offset;
+                for (int i=1; i<valueStr.length; i++) {
+                    ll.add(Integer.parseInt(valueStr[i]) - offset);
+                }
+                adj.add(index, ll);
+                line = in.readLine();
+            }
+        }
+        catch (Exception ex) {
+            System.out.println("ERROR: " + ex);
+        }
+
+        return adj;
     }
 }
