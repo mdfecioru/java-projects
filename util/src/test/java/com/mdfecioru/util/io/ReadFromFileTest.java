@@ -47,4 +47,37 @@ public class ReadFromFileTest {
         assertArrayEquals(new int[]{2, 3, 6}, adj.get(9).stream().mapToInt(i -> i).toArray());
     }
 
+
+    @Test
+    public void readDirectedGraphForSCCTest() {
+
+        ArrayList<ArrayList<LinkedList<Integer>>> adj =
+                ReadFromFile.readDirectedGraphForSCC(this.getClass().getResourceAsStream("../../../../io/ReadDirectedGraphSCC.txt"), 1);
+        assertEquals(11, adj.get(0).size());
+        assertEquals(11, adj.get(1).size());
+        assertArrayEquals(new int[]{1, 3}, adj.get(0).get(0).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{2}, adj.get(1).get(0).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{2, 7}, adj.get(0).get(1).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{0}, adj.get(1).get(1).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{0, 6, 7}, adj.get(0).get(2).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{1}, adj.get(1).get(2).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{4}, adj.get(0).get(3).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{0, 6}, adj.get(1).get(3).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{5}, adj.get(0).get(4).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{3}, adj.get(1).get(4).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{6}, adj.get(0).get(5).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{4, 9}, adj.get(1).get(5).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{3}, adj.get(0).get(6).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{2, 5, 8}, adj.get(1).get(6).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{8, 10}, adj.get(0).get(7).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{1, 2}, adj.get(1).get(7).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{9, 6}, adj.get(0).get(8).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{7, 10}, adj.get(1).get(8).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{5, 10}, adj.get(0).get(9).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{8}, adj.get(1).get(9).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{8}, adj.get(0).get(10).stream().mapToInt(i -> i).toArray());
+        assertArrayEquals(new int[]{7, 9}, adj.get(1).get(10).stream().mapToInt(i -> i).toArray());
+    }
+
+
 }
